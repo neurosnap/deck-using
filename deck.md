@@ -4,7 +4,7 @@ paginate: true
 
 # ECMA Explicit Resource Management
 
-## `using`
+## `using` and `await using`
 
 ---
 
