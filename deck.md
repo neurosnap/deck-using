@@ -2,11 +2,28 @@
 paginate: true
 ---
 
+<!--
+Hello
+
+I'm here to present a feature in Typescript 5.2: explicit resource management
+with `using`
+-->
+
 # ECMA Explicit Resource Management
 
 ## `using` and `await using`
 
+Presented by Eric Bower (https://bower.sh)
+
 ---
+
+<!--
+Let's jump right into some code so we have a rough idea of the problem and
+proposed solution.
+
+Here's a synchronous example where we acquire a file handler and it
+automatically gets released when the function is done executing.
+-->
 
 # Example
 
@@ -57,6 +74,11 @@ async function * g() {
 ---
 
 # Motivation
+
+<!--
+Before talking about the solution ECMA and TS came up with, I figured we should
+talk about the problem space.
+-->
 
 - Inconsistent patterns for resource management:
   - ECMAScript Iterators: `iterator.return()`
@@ -115,6 +137,12 @@ finally {
 
 # Prior Art
 
+<!--
+Explicit resource management as a language concept exists in other languages.
+
+I'm most familiar with this concept in Python.
+-->
+
 - C#:
   - `using` statement[^6]
   - `using` declaration[^7]
@@ -136,6 +164,12 @@ with open("romeo.txt", "r") as file:
 ---
 
 # `Symbol.dispose`
+
+<!--
+Part of this feature is making it possible for end-developers to provide a
+method on their JS objects that can automatically be called when we want to
+remove resources.
+-->
 
 ```ts
 function loggy(id: string): Disposable {
@@ -186,6 +220,11 @@ function loggy(id: string): AsyncDisposable {
 
 # `DisposableStack`
 
+<!--
+This feature also introduces a couple of new global classes you can instantiate
+to manage many resources at the same time.
+-->
+
 - Useful for doing one-off and arbitrary amounts of clean-up
 - A `DisposableStack` is an object that has several methods for keeping track of
   `Disposable` objects
@@ -220,6 +259,11 @@ function doSomeWork() {
 ---
 
 # `using` it today!
+
+<!--
+- Needs TS 5.2
+- Need polyfills for the browser
+-->
 
 Because this feature is so recent, most runtimes will not support it natively.
 To use it, you will need runtime polyfills for the following:
