@@ -12,7 +12,7 @@ paginate: true
 
 ```js
 // sync disposal
-function * g() {
+function* g() {
   using handle = acquireFileHandle(); // block-scoped critical resource
 } // cleanup
 
@@ -43,8 +43,8 @@ async function * g() {
 
 # Primary Sources
 
-- TC39 Proposal[^1] 
-- Typescript 5.2 Release Notes[^2] 
+- TC39 Proposal[^1]
+- Typescript 5.2 Release Notes[^2]
 
 ---
 
@@ -62,7 +62,8 @@ async function * g() {
   - ECMAScript Iterators: `iterator.return()`
   - WHATWG Stream Readers: `reader.releaseLock()`
   - NodeJS FileHandles: `handle.close()`
-  - Emscripten C++ objects handles: `Module._free(ptr) obj.delete() Module.destroy(obj)`
+  - Emscripten C++ objects handles:
+    `Module._free(ptr) obj.delete() Module.destroy(obj)`
 - Avoiding common footguns when managing resources
 - Scoping resources
 - Avoiding common footguns when managing multiple resources
@@ -142,8 +143,8 @@ function loggy(id: string): Disposable {
   return {
     [Symbol.dispose]() {
       console.log(`Disposing ${id}`);
-    }
-  }
+    },
+  };
 }
 
 function func() {
@@ -166,7 +167,7 @@ func();
 ```ts
 async function doWork() {
   // Do fake work for half a second.
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 }
 
 function loggy(id: string): AsyncDisposable {
@@ -177,7 +178,7 @@ function loggy(id: string): AsyncDisposable {
       console.log(`Disposing (async) ${id}`);
       await doWork();
     },
-  }
+  };
 }
 ```
 
@@ -186,9 +187,15 @@ function loggy(id: string): AsyncDisposable {
 # `DisposableStack`
 
 - Useful for doing one-off and arbitrary amounts of clean-up
-- A `DisposableStack` is an object that has several methods for keeping track of `Disposable` objects
+- A `DisposableStack` is an object that has several methods for keeping track of
+  `Disposable` objects
 - Can be given functions for doing arbitrary clean-up work
-- We can also assign them to `using` variables because -- get this -- they’re also `Disposable`!
+- We can also assign them to `using` variables because -- get this -- they’re
+  also `Disposable`!
+
+---
+
+# `DisposableStack` Example
 
 ```ts
 function doSomeWork() {
@@ -214,22 +221,26 @@ function doSomeWork() {
 
 # `using` it today!
 
-Because this feature is so recent, most runtimes will not support it natively. To use it, you will need runtime polyfills for the following:
+Because this feature is so recent, most runtimes will not support it natively.
+To use it, you will need runtime polyfills for the following:
 
-  - `Symbol.dispose`
-  - `Symbol.asyncDispose`
-  - `DisposableStack`
-  - `AsyncDisposableStack`
-  - `SuppressedError`
+- `Symbol.dispose`
+- `Symbol.asyncDispose`
+- `DisposableStack`
+- `AsyncDisposableStack`
+- `SuppressedError`
 
-However, if all you’re interested in is using and await using, you should be able to get away with only polyfilling the built-in symbols. Something as simple as the following should work for most cases:
+---
+
+However, if you only want `using` and `await using`, something as simple as the
+following should work for most cases:
 
 ```ts
 Symbol.dispose ??= Symbol("Symbol.dispose");
 Symbol.asyncDispose ??= Symbol("Symbol.asyncDispose");
 ```
 
-You will also need to set your compilation target to `es2022` or below, and configure your `lib` setting to either include `"esnext"` or `"esnext.disposable"`.
+You will also need the following in `tsconfig.json`:
 
 ```json
 {
@@ -240,11 +251,13 @@ You will also need to set your compilation target to `es2022` or below, and conf
 }
 ```
 
+---
+
 # fin
 
-- [^1]: https://github.com/tc39/proposal-explicit-resource-management 
+- [^1]: https://github.com/tc39/proposal-explicit-resource-management
 - [^2]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html
-- [^3]: https://1drv.ms/p/s!AjgWTO11Fk-Tkodu1RydtKh2ZVafxA?e=yasS3Y 
+- [^3]: https://1drv.ms/p/s!AjgWTO11Fk-Tkodu1RydtKh2ZVafxA?e=yasS3Y
 - [^4]: https://github.com/tc39/notes/blob/main/meetings/2023-03/mar-21.md#async-explicit-resource-management
 - [^5]: https://github.com/tc39/notes/blob/main/meetings/2023-03/mar-23.md#async-explicit-resource-management-again
 - [^6]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement
