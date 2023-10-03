@@ -218,6 +218,26 @@ function loggy(id: string): AsyncDisposable {
 
 ---
 
+# Other well-known `Symbol`s
+
+<!--
+These are static properties on the global `Symbol` object.
+-->
+
+- `Symbol.asyncIterator`
+- `Symbol.hasInstance`
+- `Symbol.isConcatSpeadable`
+- `Symbol.iterator`
+- `Symbol.match`
+- `Symbol.matchAll`
+- `Symbol.replace`
+- `Symbol.search`
+- `Symbol.species`
+- `Symbol.split`
+- `Symbol.toPrimitive`
+- `Symbol.toStringTag`
+- `Symbol.unscopables`
+
 # `DisposableStack`
 
 <!--
