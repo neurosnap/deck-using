@@ -255,12 +255,12 @@ You will also need the following in `tsconfig.json`:
 
 # fin
 
-- [^1]: https://github.com/tc39/proposal-explicit-resource-management
-- [^2]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html
-- [^3]: https://1drv.ms/p/s!AjgWTO11Fk-Tkodu1RydtKh2ZVafxA?e=yasS3Y
-- [^4]: https://github.com/tc39/notes/blob/main/meetings/2023-03/mar-21.md#async-explicit-resource-management
-- [^5]: https://github.com/tc39/notes/blob/main/meetings/2023-03/mar-23.md#async-explicit-resource-management-again
-- [^6]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement
-- [^7]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/using#using-declaration
-- [^8]: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
-- [^9]: https://docs.python.org/3/reference/compound_stmts.html#the-with-statement
+[^1]: https://github.com/tc39/proposal-explicit-resource-management
+[^2]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-2.html
+[^3]: https://1drv.ms/p/s!AjgWTO11Fk-Tkodu1RydtKh2ZVafxA?e=yasS3Y
+[^4]: https://github.com/tc39/notes/blob/main/meetings/2023-03/mar-21.md#async-explicit-resource-management
+[^5]: https://github.com/tc39/notes/blob/main/meetings/2023-03/mar-23.md#async-explicit-resource-management-again
+[^6]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement
+[^7]: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/using#using-declaration
+[^8]: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+[^9]: https://docs.python.org/3/reference/compound_stmts.html#the-with-statement
