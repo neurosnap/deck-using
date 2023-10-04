@@ -234,9 +234,14 @@ These are static properties on the global `Symbol` object.
 - `Symbol.search`
 - `Symbol.species`
 - `Symbol.split`
+
+---
+
 - `Symbol.toPrimitive`
 - `Symbol.toStringTag`
 - `Symbol.unscopables`
+
+---
 
 # `DisposableStack`
 
